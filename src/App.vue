@@ -3,7 +3,9 @@
     <h1>Todos los todos</h1>
     <input type="text" v-model="todoName" @keyup.enter="addTodo">
       <ul>
-        <li v-for="todo of todos" :key="todo.id">{{todo.name}}</li>
+        <li v-for="todo of todos" :key="todo.id">{{todo.name}}
+            <button @click="deleteTodo(todo.name)">delete</button>
+        </li>
       </ul>
   </div>
 </template>
@@ -36,8 +38,15 @@ export default {
       this.todos = [...this.todos, res.data];
 
       this.todoName = '';
-    }
-  }
+    },
+    // async deleteTodo(){
+    //   const res = await axios.delete(baseURL, { name: this.todoName});
+
+    //   this.todos = [...this.todos, res.data];  
+    //         // this.todoName = '';
+
+    //   }
+        },
 };
 </script>
 

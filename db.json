@@ -15,6 +15,10 @@
     {
       "name": "Eat a cinnamon swirl",
       "id": 3
+    },
+    {
+      "name": "Make eggs and chips",
+      "id": 4
     }
   ]
 }
