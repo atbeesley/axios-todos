@@ -4,7 +4,7 @@
     <input type="text" v-model="todoName" @keyup.enter="addTodo">
       <ul>
         <li v-for="todo of todos" :key="todo.id">{{todo.name}}
-            <button @click="deleteTodo(todo.name)">delete</button>
+            <button @click="deleteTodo(todo)" :key="todo.id">delete</button>
         </li>
       </ul>
   </div>
@@ -39,14 +39,13 @@ export default {
 
       this.todoName = '';
     },
-    // async deleteTodo(){
-    //   const res = await axios.delete(baseURL, { name: this.todoName});
+    deleteTodo(todo){
+      axios.delete(baseURL+'/'+todo.id);
+      window.location.reload()
 
-    //   this.todos = [...this.todos, res.data];  
-    //         // this.todoName = '';
 
-    //   }
-        },
+     }
+    }
 };
 </script>
 
