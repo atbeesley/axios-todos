@@ -5,6 +5,7 @@
       <ul>
         <li v-for="todo of todos" :key="todo.id">{{todo.name}}
             <button @click="deleteTodo(todo)" :key="todo.id">delete</button>
+            <button @click="editTodo(todo)" :key="todo.id">edit</button>
         </li>
       </ul>
   </div>
@@ -42,9 +43,10 @@ export default {
     deleteTodo(todo){
       axios.delete(baseURL+'/'+todo.id);
       window.location.reload()
-
-
-     }
+     },
+     editTodo(todo){
+       console.log('editing: ', todo);
+            }
     }
 };
 </script>
