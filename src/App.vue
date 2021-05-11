@@ -5,7 +5,8 @@
       <ul>
         <li v-for="todo of todos" :key="todo.id">{{todo.name}}
             <button @click="deleteTodo(todo)" :key="todo.id">delete</button>
-            <button @click="editTodo(todo)" :key="todo.id">edit</button>
+            <button v-if="!showEditBox" @click="editTodo(todo)">edit</button>
+            <input v-if="showEditBox" type="text" :key="todo.id" @keyup.enter="saveChange">
         </li>
       </ul>
   </div>
@@ -21,10 +22,13 @@ export default {
   data() {
     return {
       todos: [],
-      todoName: ''
+      todoName: '',
+      todoId:'',
+      showEditBox: Boolean
     };
   },
   async created(){
+    this.showEditBox=false;
     try {
       const res = await axios.get(baseURL);
       this.todos = res.data;
@@ -42,12 +46,21 @@ export default {
     },
     deleteTodo(todo){
       axios.delete(baseURL+'/'+todo.id);
-      window.location.reload()
+      window.location.reload();
      },
-     editTodo(todo){
-       console.log('editing: ', todo);
-            }
-    }
+    editTodo (){
+      this.showEditBox=true;
+      console.log(this.showEditBox);
+    },
+    async saveChange(todo){
+      const res = await axios.patch(baseURL+'/'+todo.id, { name: this.todoName});
+      this.todos = [...this.todos, res.data];
+      this.todoName = '';
+      this.showEditBox=false;
+      console.log('showEditBox: ', this.showEditBox);
+      console.log('edited: ', todo);
+    } 
+  }
 };
 </script>
 
