@@ -3,10 +3,11 @@
     <h1>Todos los todos</h1>
     <input type="text" v-model="todoName" @keyup.enter="addTodo">
       <ul>
-        <li v-for="todo of todos" :key="todo.id">{{todo.name}}
+        <li v-for="todo of todos" :key="todo.id"><span v-if="!showEditBox">{{todo.name}}</span>
             <button @click="deleteTodo(todo)" :key="todo.id">delete</button>
-            <button v-if="!showEditBox" @click="editTodo(todo)">edit</button>
-            <input v-if="showEditBox" type="text" :key="todo.id" @keyup.enter="saveChange">
+            <button v-if="!showEditBox" :key="todo.id" @click="editTodo">edit</button>
+            <input v-if="showEditBox" type="text" :placeholder="todo.name" @keyup.enter="saveChange(todo)">
+            <button v-if="showEditBox" @click="hideEditBox">cancel</button>
         </li>
       </ul>
   </div>
@@ -48,18 +49,25 @@ export default {
       axios.delete(baseURL+'/'+todo.id);
       window.location.reload();
      },
-    editTodo (){
+    editTodo(){
       this.showEditBox=true;
       console.log(this.showEditBox);
+      console.log('editTodo: this.todo: ',this.todo)
     },
     async saveChange(todo){
-      const res = await axios.patch(baseURL+'/'+todo.id, { name: this.todoName});
+      console.log('saveChange: this.todo: ', this.todo)
+      const res = await axios.put(baseURL+'/'+this.todo.id, { name: this.todoName});
       this.todos = [...this.todos, res.data];
-      this.todoName = '';
+      // this.todoName = '';
       this.showEditBox=false;
       console.log('showEditBox: ', this.showEditBox);
       console.log('edited: ', todo);
-    } 
+      window.location.reload();
+    }, 
+    hideEditBox(){
+      this.showEditBox=true;
+      window.location.reload();
+    }
   }
 };
 </script>
