@@ -4,7 +4,7 @@
     <input type="text" v-model="todoName" @keyup.enter="addTodo">
       <ul>
         <li v-for="todo of todos" :key="todo.id"><span v-if="!showEditBox">{{todo.name}}</span>
-            <button @click="deleteTodo(todo)" :key="todo.id">delete</button>
+            <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo">edit</button>
             <input v-if="showEditBox" type="text" :placeholder="todo.name" @keyup.enter="saveChange(todo)">
             <button v-if="showEditBox" @click="hideEditBox">cancel</button>
