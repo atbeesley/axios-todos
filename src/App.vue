@@ -2,14 +2,17 @@
   <div id="app">
     <h1>Todos los todos</h1>
     <input type="text" v-model="todoName" :placeholder="'enter a todo'" @keyup.enter="addTodo" style="margin-bottom: 1em">
+    <!-- <div class="d-flex align-content-center flex-wrap"> -->
       <ul>
-        <li v-for="todo of todos" :key="todo.id"><span v-if="!showEditBox">{{todo.name}}</span>
+        <li v-for="todo of todos" :key="todo.id">
+            <span v-if="!showEditBox" class="todoName">{{todo.name}}</span>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
             <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)">
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
         </li>
       </ul>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -83,13 +86,33 @@ export default {
   margin-top: 60px;
 }
 
+
 ul{
-  margin: 0px; 
-  padding: 0px;
+  display:table;
+  margin: 0 auto;
 }
 
 li {
-  list-style: none;
+    list-style: none;
+    padding: 1em;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: grey;
+    width: 30em;
+    display: flex;
+    align-items:baseline;
+  }
+
+span{
+  padding-right: 1em;
+}
+
+body{
+  background-color:rgb(198, 220, 223);
+}
+
+span{
+  font-size: 1.5em;
 }
 
 @import'~bootstrap/dist/css/bootstrap.css'

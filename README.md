@@ -1,4 +1,4 @@
-# hello-axios
+# axios-todos
 
 ## Project setup
 ```
