@@ -18,7 +18,6 @@ npm run backend
 ### Refresh the browser to see the seeded todos, or add your own!
 
 
-### Extra Vue stuff:
 
 ### Compiles and minifies for production
 ```
