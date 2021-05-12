@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <h1>Todos los todos</h1>
+    <h1><strong>Todos los todos</strong></h1>
     <input type="text" v-model="todoName" :placeholder="'add your todo'" style="margin-bottom: 1em" maxlength="25">
     <button @click="addTodo" class="btn btn-primary">save</button>
       <table>
           <tr>
-            <th>Task</th>
-            <th>Actions</th>
+            <th><h2>Task</h2></th>
+            <th><h2>Actions</h2></th>
           </tr>
           <tr v-for="todo of todos" :key="todo.id">
             <td>
