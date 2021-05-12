@@ -1,14 +1,23 @@
 # axios-todos
 
-## Project setup
+## In the root of the project, run:
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### To start the server::
 ```
 npm run serve
 ```
+
+### In a new terminal, run:
+```
+npm run backend
+```
+
+### Refresh the browser to see the seeded todos, or add your own!
+
+
 
 ### Compiles and minifies for production
 ```
