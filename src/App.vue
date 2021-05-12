@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h1>Todos los todos</h1>
-    <input type="text" v-model="todoName" :placeholder="'enter a todo'" @keyup.enter="addTodo" style="margin-bottom: 1em">
+    <input type="text" v-model="todoName" :placeholder="'enter a todo'" style="margin-bottom: 1em">
+    <button @click="addTodo" class="btn btn-primary">save</button>
     <!-- <div class="d-flex align-content-center flex-wrap"> -->
       <ul>
         <li v-for="todo of todos" :key="todo.id">
@@ -57,15 +58,15 @@ export default {
       console.log(this.showEditBox);
       console.log('editTodo: this.todo: ',this.todo)
     },
-    async saveChange(todo){
+    saveChange(todo){
       console.log('saveChange: this.todo: ', this.todo)
-      const res = await axios.put(baseURL+'/'+this.todo.id, { name: this.todoName});
+      this.todo.name = this.todoName;
+      const res = axios.put(baseURL+'/'+todo.id, { name: this.todoName});
       this.todos = [...this.todos, res.data];
-      // this.todoName = '';
       this.showEditBox=false;
       console.log('showEditBox: ', this.showEditBox);
       console.log('edited: ', todo);
-      window.location.reload();
+      // window.location.reload();
     }, 
     hideEditBox(){
       this.showEditBox=true;
@@ -113,6 +114,10 @@ body{
 
 span{
   font-size: 1.5em;
+}
+
+button{
+  padding: 1em;
 }
 
 @import'~bootstrap/dist/css/bootstrap.css'
