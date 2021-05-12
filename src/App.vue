@@ -4,8 +4,8 @@
     <input type="text" v-model="todoName" :placeholder="'enter a todo'" @keyup.enter="addTodo" style="margin-bottom: 1em">
       <ul>
         <li v-for="todo of todos" :key="todo.id"><span v-if="!showEditBox">{{todo.name}}</span>
-            <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id">delete</button>
-            <button v-if="!showEditBox" :key="todo.id" @click="editTodo">edit</button>
+            <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
+            <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
             <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)">
             <button v-if="showEditBox" @click="hideEditBox">cancel</button>
         </li>
@@ -73,6 +73,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -90,4 +91,7 @@ ul{
 li {
   list-style: none;
 }
+
+@import'~bootstrap/dist/css/bootstrap.css'
+
 </style>
