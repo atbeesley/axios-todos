@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <h1>Todos los todos</h1>
-    <input type="text" v-model="todoName" @keyup.enter="addTodo">
+    <input type="text" v-model="todoName" :placeholder="'enter a todo'" @keyup.enter="addTodo" style="margin-bottom: 1em">
       <ul>
         <li v-for="todo of todos" :key="todo.id"><span v-if="!showEditBox">{{todo.name}}</span>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo">edit</button>
-            <input v-if="showEditBox" type="text" :placeholder="todo.name" @keyup.enter="saveChange(todo)">
+            <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)">
             <button v-if="showEditBox" @click="hideEditBox">cancel</button>
         </li>
       </ul>
