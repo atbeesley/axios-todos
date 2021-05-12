@@ -7,7 +7,7 @@
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
             <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)">
-            <button v-if="showEditBox" @click="hideEditBox">cancel</button>
+            <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
         </li>
       </ul>
   </div>
