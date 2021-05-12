@@ -1,18 +1,26 @@
 <template>
   <div id="app">
     <h1>Todos los todos</h1>
-    <input type="text" v-model="todoName" :placeholder="'enter a todo'" style="margin-bottom: 1em">
+    <input type="text" v-model="todoName" :placeholder="'add your todo'" style="margin-bottom: 1em" maxlength="25">
     <button @click="addTodo" class="btn btn-primary">save</button>
-    <!-- <div class="d-flex align-content-center flex-wrap"> -->
-      <ul>
-        <li v-for="todo of todos" :key="todo.id">
-            <span v-if="!showEditBox" class="todoName">{{todo.name}}</span>
+      <table>
+          <tr>
+            <th>Task</th>
+            <th>Actions</th>
+          </tr>
+          <tr v-for="todo of todos" :key="todo.id">
+            <td>
+              <span v-if="!showEditBox" class="todoName">{{todo.name}}</span>
+              <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)" maxlength="25">
+            </td>
+            <td>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
-            <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)">
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
-        </li>
-      </ul>
+
+            </td>
+          </tr>
+      </table>
     <!-- </div> -->
   </div>
 </template>
@@ -104,6 +112,21 @@ li {
     align-items:baseline;
   }
 
+  td, tr{
+    width: 20em;
+      /* overflow:hidden; */
+  word-wrap:break-word;
+  }
+
+table{
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: grey;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 span{
   padding-right: 1em;
 }
@@ -117,8 +140,12 @@ span{
 }
 
 button{
+  display: flex;
+  justify-content:center;
   padding: 1em;
-}
+  /* position: fixed; */
+
+  }
 
 @import'~bootstrap/dist/css/bootstrap.css'
 
