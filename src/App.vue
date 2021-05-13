@@ -11,17 +11,17 @@
           <tr v-for="todo of todos" :key="todo.id">
             <td>
               <span v-if="!showEditBox" class="todoName">{{todo.name}}</span>
-              <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" @keyup.enter="saveChange(todo)" maxlength="25">
+              <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" maxlength="25">
             </td>
             <td>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
+            <button v-if="showEditBox" @click="saveChange(todo)" class="btn btn-primary">save changes</button>
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
 
             </td>
           </tr>
       </table>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -37,7 +37,8 @@ export default {
       todos: [],
       todoName: '',
       todoId:'',
-      showEditBox: Boolean
+      showEditBox: Boolean,
+      completed: Boolean
     };
   },
   async created(){
