@@ -6,6 +6,7 @@
       <table>
           <tr>
             <th><h2>Task</h2></th>
+            <th><h2>Status</h2></th>
             <th><h2>Actions</h2></th>
           </tr>
           <tr v-for="todo of todos" :key="todo.id">
@@ -14,11 +15,14 @@
               <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" maxlength="25">
             </td>
             <td>
+              <input type="checkbox" id="checkbox" v-model="checked">
+            <label for="checkbox">{{ checked }}</label>
+            </td>
+            <td>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
             <button v-if="showEditBox" @click="saveChange(todo)" class="btn btn-primary">save changes</button>
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
-
             </td>
           </tr>
       </table>
