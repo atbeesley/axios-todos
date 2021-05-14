@@ -19,9 +19,9 @@
             <label for="checkbox">{{ checked }}</label>
             </td>
             <td>
-            <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
-            <button v-if="showEditBox" @click="saveChange(todo)" class="btn btn-primary">save changes</button>
+            <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
+            <button v-if="showEditBox" @click="saveChange(todo)" class="btn btn-primary">save</button>
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
             </td>
           </tr>
