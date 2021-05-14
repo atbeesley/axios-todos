@@ -15,8 +15,8 @@
               <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" maxlength="25">
             </td>
             <td>
-              <input type="checkbox" id="checkbox" v-model="checked">
-            <label for="checkbox">{{ checked }}</label>
+              <input type="checkbox" id="checkbox" v-model="todo.completed" @click="toggleTodo(todo)"> 
+            <label for="checkbox">{{ todo.completed }}</label>
             </td>
             <td>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
@@ -61,6 +61,9 @@ export default {
       this.todos = [...this.todos, res.data];
 
       this.todoName = '';
+    },
+    toggleTodo(){
+      console.log('toggling checkedness of ', this.todo)
     },
     deleteTodo(todo){
       axios.delete(baseURL+'/'+todo.id);
