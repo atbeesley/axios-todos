@@ -15,13 +15,13 @@
               <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" maxlength="25">
             </td>
             <td>
-              <input type="checkbox" id="checkbox" v-model="todo.completed" @click="toggleTodo(todo)"> 
+            <input type="checkbox" id="checkbox" v-model="todo.completed" @click="toggleTodo(todo)" :key="todo.id"> 
             <label for="checkbox">{{ todo.completed }}</label>
             </td>
             <td>
-            <button v-if="!showEditBox" :key="todo.id" @click="editTodo" class="btn btn-primary">edit</button>
+            <button v-if="!showEditBox" :key="todo.id" @click="editTodo(todo)" class="btn btn-primary">edit</button>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
-            <button v-if="showEditBox" @click="saveChange(todo)" class="btn btn-primary">save</button>
+            <button v-if="showEditBox" @click="saveChange(todo)" :key="todo.id" class="btn btn-primary">save</button>
             <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
             </td>
           </tr>
@@ -62,8 +62,8 @@ export default {
 
       this.todoName = '';
     },
-    toggleTodo(){
-      console.log('toggling checkedness of ', this.todo)
+    toggleTodo(todo){
+      console.log('toggling checkedness of ', todo.name)
     },
     deleteTodo(todo){
       axios.delete(baseURL+'/'+todo.id);
