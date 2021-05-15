@@ -1,24 +1,22 @@
 {
   "todos": [
     {
-      "id": 0,
-      "name": "Throw a pizza in the oven"
+      "name": "",
+      "id": 0
     },
     {
-      "id": 1,
-      "name": "Have a chat with my fish"
-    },
-    {
-      "id": 2,
-      "name": "Water the geraniums"
-    },
-    {
-      "name": "Eat a cinnamon swirl",
+      "name": "",
       "id": 3
     },
     {
       "name": "Make eggs and chips",
+      "completed": false,
       "id": 4
+    },
+    {
+      "name": "Cook some salad",
+      "completed": false,
+      "id": 5
     }
   ]
 }
