@@ -7,7 +7,8 @@
           <tr>
             <th><h2>Task</h2></th>
             <th><h2>Status</h2></th>
-            <th><h2>Actions</h2></th>
+            <th></th>
+            <th></th>
           </tr>
           <tr v-for="todo of todos" :key="todo.id">
             <td>
@@ -21,8 +22,10 @@
             <td>
             <button v-if="!showEditBox" :key="todo.id" @click="editTodo(todo)" class="btn btn-primary">edit</button>
             <button v-if="!showEditBox" @click="deleteTodo(todo)" :key="todo.id" class="btn btn-danger">delete</button>
-            <button v-if="showEditBox" @click="saveChange(todo)" :key="todo.id" class="btn btn-primary">save</button>
-            <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
+            </td>
+            <td>
+              <button v-if="showEditBox" @click="saveChange(todo)" :key="todo.id" class="btn btn-primary">save</button>
+              <button v-if="showEditBox" @click="hideEditBox" class="btn btn-secondary">cancel</button>
             </td>
           </tr>
       </table>
@@ -121,8 +124,6 @@ li {
   }
 
   td, tr{
-    width: 20em;
-      /* overflow:hidden; */
   word-wrap:break-word;
   }
 
