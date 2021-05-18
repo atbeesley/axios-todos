@@ -16,7 +16,7 @@
               <input v-if="showEditBox" type="text" :value="todo.name" :key="todo.id" maxlength="25">
             </td>
             <td>
-            <input type="checkbox" id="checkbox" v-model="todo.completed" @click="toggleTodo(todo)" :key="todo.id"> 
+            <input type="checkbox" id="checkbox" v-model="todoCompleted" @click="toggleTodo(todo)" :key="todo.id"> 
             <!-- <label for="checkbox">{{ todo.completed }}</label> -->
             </td>
             <td>
@@ -59,15 +59,17 @@ export default {
   },
   methods: {
     async addTodo(){
-      const res = await axios.post(baseURL, { name: this.todoName});
+      const res = await axios.post(baseURL, { name: this.todoName, completed: this.todoCompleted});
 
       this.todos = [...this.todos, res.data];
 
       this.todoName = '';
+      this.todoCompleted = false;
     },
     toggleTodo(todo){
       console.log('toggling checkedness of ', todo.name)
-      axios.post(baseURL+'/'+todo.id, { completed: this.todo.completed});
+      // axios.put(baseURL+'/'+todo.id, { completed: this.todoCompleted});
+      // this.todoName = this.todo.name;
     },
     deleteTodo(todo){
       axios.delete(baseURL+'/'+todo.id);
@@ -80,7 +82,7 @@ export default {
     },
     saveChange(todo){
       console.log('saveChange: this.todo: ', this.todo)
-      this.todo.name = this.todoName;
+      // this.todo.name = this.todoName;
       const res = axios.put(baseURL+'/'+todo.id, { name: this.todoName});
       this.todos = [...this.todos, res.data];
       this.showEditBox=false;
